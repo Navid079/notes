@@ -1,7 +1,10 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 
-app.listen(3001, () => {
-  console.log('connected!');
+mongoose.connect('mongodb://localhost:27017/notesapi').then(() => {
+  app.listen(3001, () => {
+    console.log('connected!');
+  });
 });
