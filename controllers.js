@@ -38,7 +38,7 @@ exports.editNote = async (req, res, next) => {
   res.json({ message: 'edited', note });
 };
 
-exports.deleteNote = (req, res, next) => {
+exports.deleteNote = async (req, res, next) => {
   const { id } = req.body;
   const note = await Note.findByIdAndDelete(id);
   if(!note) {
