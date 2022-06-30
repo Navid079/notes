@@ -19,7 +19,7 @@ exports.compiler = (req, res, next) => {
   const resultArray = result.array({ onlyFirstError: true });
   const [status, message] = resultArray[0].msg.split('-');
   try {
-    res.status(status).json({ message });
+    res.status(+status).json({ message });
   } catch {
     res.status(500).send();
   }
