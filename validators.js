@@ -1,4 +1,4 @@
-const { body, query } = require('express-validator');
+const { body, query, validationResult } = require('express-validator');
 
 exports.addNote = [
   body('title', '422-title missing').exists().isString(),
@@ -9,8 +9,6 @@ exports.getNote = [query('id', '404-not found').exists()];
 
 exports.editNote = [
   body('id', '404-not found').exists(),
-  body('title', '422-title missing').exists().isString(),
-  body('text', '422-text missing').exists().isString(),
 ];
 
 exports.deleteNote = [body('id', '404-not found').exists()];
