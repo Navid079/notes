@@ -39,8 +39,12 @@ exports.editNote = async (req, res, next) => {
 
   note.title = title || note.title;
   note.text = text || note.text;
-  await note.save();
-  res.json({ message: 'edited', note });
+  if (title !== note.title || text !== note.text) {
+    await note.save();
+    res.json({ message: 'edited', note });
+  } else {
+    res.status(202).json({ message: 'nothing to edit', note });
+  }
 };
 
 exports.deleteNote = async (req, res, next) => {
